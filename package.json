@@ -1,0 +1,133 @@
+{
+  "name": "chronix",
+  "displayName": "Chronix",
+  "description": "Track your coding time by file, language, and project in VS Code. All data stays locally on your computer.",
+  "version": "0.1.0",
+  "publisher": "AdityaLF",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdityaLF/chronix"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/AdityaLF"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "coding time",
+    "time tracker",
+    "coding tracker",
+    "developer productivity",
+    "coding stats",
+    "offline"
+  ],
+  "icon": "media/icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "chronix.exportMarkdown",
+        "title": "Export Report as Markdown",
+        "category": "Chronix"
+      },
+      {
+        "command": "chronix.clearData",
+        "title": "Clear All Data",
+        "category": "Chronix"
+      },
+      {
+        "command": "chronix.openStorageFile",
+        "title": "Open Storage File (JSON)",
+        "category": "Chronix"
+      },
+      {
+        "command": "chronix.exportCsv",
+        "title": "Export Report as CSV",
+        "category": "Chronix"
+      }
+    ],
+    "configuration": {
+      "title": "Chronix",
+      "properties": {
+        "chronix.ignoredPatterns": {
+          "type": "array",
+          "default": [
+            ".env",
+            "node_modules"
+          ],
+          "description": "List of file extensions, filenames, or folder patterns to ignore in Chronix tracking."
+        },
+        "chronix.dailyGoal": {
+          "type": "string",
+          "default": "0",
+          "description": "Daily coding goal (e.g. 2h, 30m, 1h 30m, 45s, or 0 to disable). Shows progress bar in Chronix."
+        },
+        "chronix.notifyGoalAchieved": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a notification when your daily goal is reached."
+        },
+        "chronix.initialItemsLimit": {
+          "type": "integer",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 50,
+          "description": "Number of items (files, languages, projects) initially visible in the Chronix dashboard."
+        },
+        "chronix.maxExpandedItems": {
+          "type": "integer",
+          "default": 10,
+          "minimum": 5,
+          "maximum": 100,
+          "description": "Maximum number of items (files, languages, projects) shown when expanding a list (+ more) in the Chronix dashboard."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "chronix-container",
+          "title": "Chronix",
+          "icon": "$(clock)"
+        }
+      ]
+    },
+    "views": {
+      "chronix-container": [
+        {
+          "type": "webview",
+          "id": "chronix.sidebar",
+          "name": "",
+          "icon": "$(clock)"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild-watch": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "package": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.22.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "material-icon-theme": "^5.37.0"
+  }
+}
