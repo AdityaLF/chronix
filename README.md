@@ -14,6 +14,14 @@ Track your coding time by file, language, and project in VS Code. All data stays
   <img src="media/preview-statusbar.png" alt="Chronix Status Bar Indicator" />
 </p>
 
+## Installation
+
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=AdityaLF.chronix), or launch Quick Open (`Ctrl+P` / `Cmd+P`) in VS Code and run:
+
+```bash
+ext install AdityaLF.chronix
+```
+
 ## Features
 
 - Track time spent on each file, programming language, and project.
